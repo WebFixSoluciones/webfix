@@ -2,135 +2,152 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Search, ShieldCheck, ArrowRight, Loader2, Sparkles, Check } from "lucide-react";
+import { Search, ShieldCheck, ArrowRight, Loader2, Star } from "lucide-react";
 import { DOMAIN_TLDS } from "@/data/domains";
 
 export default function HeroSection() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTld, setSelectedTld] = useState(".com");
   const [isSearching, setIsSearching] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
-
     setIsSearching(true);
 
     let cleanDomain = searchTerm.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, "");
-    if (!cleanDomain.includes(".")) {
-      cleanDomain = `${cleanDomain}${selectedTld}`;
-    }
+    if (!cleanDomain.includes(".")) cleanDomain = `${cleanDomain}.com`;
 
-    const whmcsDomainUrl = `https://webfixsoluciones.net/cliente/cart.php?a=add&domain=register&query=${encodeURIComponent(cleanDomain)}`;
-
+    const url = `https://webfixsoluciones.net/cliente/cart.php?a=add&domain=register&query=${encodeURIComponent(cleanDomain)}`;
     setTimeout(() => {
-      window.open(whmcsDomainUrl, "_blank");
+      window.open(url, "_blank");
       setIsSearching(false);
     }, 400);
   };
 
+  const tlds = DOMAIN_TLDS.slice(0, 5);
+
   return (
-    <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        {/* Top Domain Search Bar (Hostinger / Modern Style) */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 py-2">
-          {/* Domain Search Capsule */}
-          <div className="w-full lg:max-w-3xl">
-            <form onSubmit={handleSearch} className="relative">
-              <div className="flex items-center bg-white rounded-xl sm:rounded-2xl p-1.5 sm:p-2 shadow-2xl transition-all">
-                <div className="flex items-center gap-2.5 w-full pl-3 sm:pl-4">
-                  <Search className="w-5 h-5 text-zinc-400 shrink-0" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Escribe el dominio que deseas"
-                    className="w-full bg-transparent text-black text-sm sm:text-base font-normal placeholder-zinc-400 focus:outline-none"
-                    required
-                  />
-                </div>
+    <section className="relative min-h-screen flex flex-col">
+      {/* ── Full-screen background ──────────────────────────────────── */}
+      <div className="absolute inset-0 -z-10">
+        {/* Photo */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/assets/hero-hosting.png')" }}
+        />
+        {/* Cinematic darkening overlay – keeps left side very dark so text pops */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
+        {/* Bottom fade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/50" />
+      </div>
 
-                <button
-                  type="submit"
-                  disabled={isSearching}
-                  className="shrink-0 px-6 sm:px-9 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-bold text-sm text-white bg-[#6c35de] hover:bg-[#5a28c2] transition-colors cursor-pointer disabled:opacity-70 shadow-md"
-                >
-                  {isSearching ? (
-                    <div className="flex items-center gap-1.5">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Buscando</span>
-                    </div>
-                  ) : (
-                    <span>Buscar</span>
-                  )}
-                </button>
+      {/* ── Content ─────────────────────────────────────────────────── */}
+      <div className="flex-1 flex items-center max-w-7xl mx-auto w-full px-6 lg:px-8 pt-32 pb-24">
+        <div className="max-w-xl space-y-8">
+
+          {/* Eyebrow tag */}
+          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-normal tracking-widest uppercase text-white/60 border border-white/[0.15] bg-white/[0.04]">
+            Hosting web y mucho más
+          </span>
+
+          {/* Main Heading — Atkinson, weight 600 */}
+          <h1 className="font-heading font-semibold text-white leading-[1.08]" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
+            Construye, aloja,<br />
+            crece tu presencia<br />
+            <span className="text-gradient-blue">online</span>
+          </h1>
+
+          {/* Sub — Inter 400 */}
+          <p className="text-white/60 font-normal text-base sm:text-lg leading-relaxed max-w-md">
+            Tu plataforma todo-en-uno para el éxito online.<br />
+            LiteSpeed NVMe, SSL gratis, migración incluida.
+          </p>
+
+          {/* Domain Search Bar */}
+          <form onSubmit={handleSearch} className="w-full max-w-lg">
+            <div className="flex items-center bg-white/[0.06] border border-white/[0.12] rounded-full p-1.5 backdrop-blur-sm transition-all focus-within:border-white/30">
+              <div className="flex items-center gap-2 pl-4 flex-1">
+                <Search className="w-4 h-4 text-white/40 shrink-0" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Busca tu dominio ideal..."
+                  className="w-full bg-transparent text-white text-sm font-normal placeholder-white/30 focus:outline-none"
+                  required
+                />
               </div>
-            </form>
-          </div>
-
-          {/* Right Notice */}
-          <div className="text-right hidden lg:block pr-2">
-            <div className="text-xs sm:text-sm font-bold text-white tracking-tight">
-              Dominio gratis durante 1 año
-            </div>
-            <div className="text-xs text-zinc-400">
-              se incluye en los{" "}
-              <a href="#planes" className="text-zinc-200 underline hover:text-white transition-colors">
-                planes anuales
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Visual Card (Clean Hostinger / Vercel Aesthetic) */}
-        <div className="relative rounded-3xl sm:rounded-[2.5rem] overflow-hidden min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] border border-white/[0.1] shadow-2xl flex items-center">
-          {/* Background Atmospheric Layer */}
-          <div className="absolute inset-0 bg-[#0a0a0e]">
-            {/* Background Image / Texture */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-105"
-              style={{
-                backgroundImage: "url('/assets/hero-hosting.png')"
-              }}
-            />
-            {/* Dark Cinematic Gradient Overlay for Crystal Clear Text */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
-          </div>
-
-          {/* Ambient Lighting Glows */}
-          <div className="absolute top-1/3 left-10 w-96 h-96 bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-          {/* Left Hero Content */}
-          <div className="relative z-10 max-w-2xl px-6 sm:px-12 lg:px-16 py-12 sm:py-16 space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
-              Tu éxito online <br className="hidden sm:inline" />
-              empieza aquí
-            </h1>
-
-            <p className="text-zinc-300 text-base sm:text-lg font-normal leading-relaxed max-w-xl">
-              Desde publicar un sitio hasta impulsar tu negocio con LiteSpeed y discos NVMe, con WebFix lo tienes todo.
-            </p>
-
-            <div className="pt-2">
-              <a
-                href="#planes"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-bold text-sm text-black bg-white hover:bg-zinc-200 transition-all shadow-[0_0_30px_-5px_rgba(255,255,255,0.4)] transform hover:scale-[1.02]"
+              <button
+                type="submit"
+                disabled={isSearching}
+                className="shrink-0 px-6 py-2.5 rounded-full text-sm font-normal text-black bg-white hover:bg-white/90 transition-colors cursor-pointer disabled:opacity-60"
               >
-                <span>Empezar ya</span>
-              </a>
+                {isSearching ? (
+                  <Loader2 className="w-4 h-4 animate-spin mx-auto" />
+                ) : (
+                  "Buscar"
+                )}
+              </button>
             </div>
 
-            <div className="pt-4 flex items-center gap-2 text-xs sm:text-sm text-zinc-400 font-medium">
-              <ShieldCheck className="w-4 h-4 text-zinc-400" />
-              <span>Garantía de reembolso de 30 días</span>
+            {/* TLD quick pills */}
+            <div className="flex flex-wrap gap-2 mt-3 pl-1">
+              {tlds.map((tld) => (
+                <button
+                  key={tld.extension}
+                  type="button"
+                  onClick={() => {
+                    setSearchTerm((prev) => {
+                      const base = prev.split(".")[0] || prev;
+                      return base ? `${base}${tld.extension}` : "";
+                    });
+                  }}
+                  className="text-[11px] font-normal text-white/50 hover:text-white/80 transition-colors cursor-pointer"
+                >
+                  {tld.extension}{" "}
+                  <span className="text-white/25">${tld.priceAnnual.toFixed(0)}</span>
+                </button>
+              ))}
             </div>
+          </form>
+
+          {/* CTA Button */}
+          <div className="pt-2">
+            <a
+              href="#planes"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-normal text-black bg-white hover:bg-white/90 transition-colors shadow-md"
+            >
+              Explorar servicios
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Trust badge */}
+          <div className="flex items-start gap-3 pt-2">
+            <ShieldCheck className="w-5 h-5 text-white/30 shrink-0 mt-0.5" />
+            <p className="text-white/40 text-[13px] font-light leading-snug">
+              Garantía de reembolso de 30 días.{" "}
+              <span className="text-white/60">Sin contratos forzosos.</span>
+            </p>
           </div>
         </div>
+      </div>
 
+      {/* ── Bottom Trust Bar ─────────────────────────────────────────── */}
+      <div className="relative bg-black/50 backdrop-blur-md border-t border-white/[0.06] py-5 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
+          <div className="flex items-center gap-1.5">
+            {[1,2,3,4,5].map((i) => (
+              <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+          <p className="text-[13px] font-light text-white/50">
+            <span className="text-white/70 font-normal">Excelente</span>
+            {" "}· Máxima calificación del sector ·{" "}
+            <span className="text-white/70 font-normal">4.9 de 5 estrellas</span>
+            {" "}· Con la confianza de miles de sitios web en Ecuador
+          </p>
+        </div>
       </div>
     </section>
   );
