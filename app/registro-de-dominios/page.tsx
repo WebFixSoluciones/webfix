@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Globe, Check, ArrowRight, ShieldCheck, Lock, RefreshCw, Sparkles } from "lucide-react";
+import { Globe, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import DomainSearchBox from "@/components/home/DomainSearchBox";
 import { DOMAIN_TLDS, DOMAIN_FEATURES } from "@/data/domains";
 import FaqAccordion from "@/components/home/FaqAccordion";
@@ -27,21 +27,21 @@ const DOMAIN_FAQS: FAQItem[] = [
 
 export default function RegistroDeDominiosPage() {
   return (
-    <div className="pt-28 pb-20 bg-tech-grid">
-      {/* Hero */}
-      <section className="py-16 md:py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-950/80 border border-brand-500/30 text-xs font-bold text-brand-300">
-            <Globe className="w-3.5 h-3.5 text-brand-400" />
+    <div className="pt-28 pb-20 vercel-grid">
+      <section className="py-16 md:py-24 relative overflow-hidden vercel-spotlight">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl text-xs font-mono text-cyan-400">
+            <Globe className="w-3.5 h-3.5" />
             <span>Registrador Oficial de Nombres de Dominio</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            ¡Busque, Registre y Compre su <span className="text-gradient-blue">Dominio Hoy</span>!
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight text-shine">
+            Encuentra y Registra tu <br />
+            <span className="text-gradient-electric">Nombre en Internet</span>
           </h1>
 
-          <p className="text-slate-300 text-lg leading-relaxed">
-            Más de 1,000 clientes confían en WebFix. Registro instantáneo, panel de administración DNS en tiempo real y protección de privacidad Whois gratuita.
+          <p className="text-zinc-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            Registro instantáneo, Whois Privacy gratuito, panel DNS en tiempo real y precios transparentes de renovación.
           </p>
         </div>
 
@@ -50,97 +50,90 @@ export default function RegistroDeDominiosPage() {
         </div>
       </section>
 
-      {/* TLD Pricing Table */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              Tabla de Precios de Extensiones Populares
-            </h2>
-            <p className="text-slate-400 text-sm mt-2">
-              Tarifas anuales transparentes sin costos ocultos de renovación.
-            </p>
-          </div>
+      {/* TLD Table */}
+      <section className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-shine">
+            Extensiones de Dominio Disponibles
+          </h2>
+          <p className="text-zinc-400 text-xs sm:text-sm mt-1">
+            Precios anuales sin tarifas sorpresa.
+          </p>
+        </div>
 
-          <div className="rounded-3xl glass-card border border-slate-800 overflow-hidden shadow-2xl">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-slate-900/90 text-xs uppercase tracking-wider text-slate-400 border-b border-slate-800">
-                  <tr>
-                    <th className="py-4 px-6">Extensión TLD</th>
-                    <th className="py-4 px-6">Propósito</th>
-                    <th className="py-4 px-6 text-center">Registro</th>
-                    <th className="py-4 px-6 text-center">Renovación</th>
-                    <th className="py-4 px-6 text-center">Transferencia</th>
-                    <th className="py-4 px-6 text-right">Acción</th>
+        <div className="rounded-3xl glass-panel border border-white/[0.1] overflow-hidden shadow-2xl">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs font-mono">
+              <thead className="bg-white/[0.02] uppercase tracking-wider text-zinc-500 border-b border-white/[0.06]">
+                <tr>
+                  <th className="py-3.5 px-6">Extensión</th>
+                  <th className="py-3.5 px-6 font-sans">Propósito</th>
+                  <th className="py-3.5 px-6 text-center">Registro</th>
+                  <th className="py-3.5 px-6 text-center">Renovación</th>
+                  <th className="py-3.5 px-6 text-right font-sans">Acción</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/[0.04]">
+                {DOMAIN_TLDS.map((tld) => (
+                  <tr key={tld.extension} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 font-bold text-white text-sm flex items-center gap-2">
+                      <span className="text-cyan-400">{tld.extension}</span>
+                      {tld.popular && (
+                        <span className="text-[9px] bg-blue-500/20 text-blue-300 px-1.5 py-0.2 rounded-full font-sans font-bold">
+                          POPULAR
+                        </span>
+                      )}
+                      {tld.extension === ".ec" && (
+                        <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.2 rounded-full font-sans font-bold">
+                          EC
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-4 px-6 text-zinc-400 font-sans text-xs max-w-xs">
+                      {tld.description}
+                    </td>
+                    <td className="py-4 px-6 text-center font-bold text-white">
+                      ${tld.priceAnnual.toFixed(2)}/año
+                    </td>
+                    <td className="py-4 px-6 text-center text-zinc-500">
+                      ${tld.renewalPrice.toFixed(2)}/año
+                    </td>
+                    <td className="py-4 px-6 text-right">
+                      <a
+                        href={`https://webfixsoluciones.net/cliente/cart.php?a=add&domain=register&tld=${encodeURIComponent(tld.extension)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-white text-black hover:bg-zinc-200 font-semibold text-xs transition-all shadow-sm font-sans"
+                      >
+                        <span>Registrar</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800/60">
-                  {DOMAIN_TLDS.map((tld) => (
-                    <tr key={tld.extension} className="hover:bg-slate-900/40 transition-colors">
-                      <td className="py-4 px-6 font-mono font-bold text-white text-base flex items-center gap-2">
-                        <span className="text-brand-400">{tld.extension}</span>
-                        {tld.popular && (
-                          <span className="text-[10px] bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded-full font-sans font-bold">
-                            POPULAR
-                          </span>
-                        )}
-                        {tld.extension === ".ec" && (
-                          <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-sans font-bold">
-                            ECUADOR
-                          </span>
-                        )}
-                      </td>
-                      <td className="py-4 px-6 text-xs text-slate-400 max-w-xs">
-                        {tld.description}
-                      </td>
-                      <td className="py-4 px-6 text-center font-bold text-white font-mono">
-                        ${tld.priceAnnual.toFixed(2)}/año
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-400 font-mono text-xs">
-                        ${tld.renewalPrice.toFixed(2)}/año
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-400 font-mono text-xs">
-                        ${tld.transferPrice.toFixed(2)}
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <a
-                          href={`https://webfixsoluciones.net/cliente/cart.php?a=add&domain=register&tld=${encodeURIComponent(tld.extension)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md transition-all"
-                        >
-                          <span>Registrar</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-16 bg-slate-950/60 border-y border-slate-800">
+      {/* Features Bento */}
+      <section className="py-16 border-y border-white/[0.06] bg-zinc-950/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {DOMAIN_FEATURES.map((feat, idx) => (
-              <div key={idx} className="p-6 rounded-2xl glass-card border border-slate-800 space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center">
-                  <ShieldCheck className="w-5 h-5" />
+              <div key={idx} className="p-6 rounded-3xl glass-panel-interactive space-y-2.5">
+                <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
-                <h4 className="text-base font-bold text-white">{feat.title}</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">{feat.description}</p>
+                <h4 className="text-sm font-bold text-white">{feat.title}</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">{feat.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQs */}
       <FaqAccordion faqs={DOMAIN_FAQS} title="Preguntas Frecuentes sobre Dominios" />
     </div>
   );

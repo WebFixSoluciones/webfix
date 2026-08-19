@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sparkles, Check, ArrowRight, ShieldCheck, Zap, Server } from "lucide-react";
+import { Sparkles, Check, ArrowRight, ShieldCheck, Zap } from "lucide-react";
 import { FREE_HOSTING_PLAN } from "@/data/pricing";
 import FaqAccordion from "@/components/home/FaqAccordion";
 import { FAQItem } from "@/data/faqs";
@@ -26,45 +26,46 @@ const FREE_FAQS: FAQItem[] = [
 
 export default function HostingGratisPage() {
   return (
-    <div className="pt-28 pb-20 bg-tech-grid">
-      <section className="py-16 md:py-24 text-center space-y-6 max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-xs font-bold text-emerald-300">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Plan 100% Gratuito</span>
+    <div className="pt-28 pb-20 vercel-grid">
+      <section className="py-16 md:py-24 text-center space-y-6 max-w-4xl mx-auto px-4 sm:px-6 vercel-spotlight">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl text-xs font-mono text-emerald-400">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Plan 100% Gratuito (Free Tier)</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-          Hosting Gratis <span className="text-gradient-blue">Rápido y Confiable</span>
+        <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight text-shine">
+          Hosting Gratis <br />
+          <span className="text-gradient-cyan">Rápido & Confiable</span>
         </h1>
 
-        <p className="text-slate-300 text-lg sm:text-xl leading-relaxed">
-          Diseña y publica tu sitio web sin costo mensual. Alojamiento web profesional, Uptime garantizado, panel cPanel en español y certificado SSL gratuito.
+        <p className="text-zinc-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          Publica tu sitio web sin costo mensual. Alojamiento web con cPanel en español, certificado SSL gratis y WordPress listo en 1 clic.
         </p>
 
         {/* Free Card */}
-        <div className="pt-10 max-w-lg mx-auto">
-          <div className="relative rounded-3xl p-8 glass-card border-2 border-emerald-500 shadow-2xl shadow-emerald-950/80 text-left space-y-6">
-            <div className="flex justify-between items-center border-b border-slate-800 pb-4">
+        <div className="pt-10 max-w-md mx-auto">
+          <div className="relative rounded-3xl p-8 bg-zinc-950/90 border-2 border-emerald-500/60 shadow-[0_0_50px_rgba(16,185,129,0.2)] text-left space-y-6">
+            <div className="flex justify-between items-center border-b border-white/[0.08] pb-4">
               <div>
-                <span className="text-xs uppercase font-extrabold text-emerald-400 tracking-wider">
-                  MÁS VENDIDO FREE
+                <span className="text-[10px] font-mono font-extrabold text-emerald-400 tracking-wider uppercase">
+                  FREE TIER
                 </span>
-                <h3 className="text-2xl font-bold text-white">Plan Free Starter</h3>
+                <h3 className="text-xl font-bold text-white">Plan Free Starter</h3>
               </div>
-              <div className="text-right">
-                <span className="text-3xl font-extrabold text-white">$0</span>
-                <span className="text-slate-400 text-xs block">/mes</span>
+              <div className="text-right font-mono">
+                <span className="text-4xl font-extrabold text-white">$0</span>
+                <span className="text-zinc-500 text-xs block">/mes</span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-400">
-              Ideal para empresas o personas iniciando en el mundo digital.
+            <p className="text-xs text-zinc-400">
+              Ideal para pruebas, estudiantes o proyectos personales iniciales.
             </p>
 
-            <ul className="space-y-3 text-xs sm:text-sm text-slate-300">
+            <ul className="space-y-2.5 text-xs text-zinc-300">
               {FREE_HOSTING_PLAN.features.map((feat, idx) => (
                 <li key={idx} className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>{feat}</span>
                 </li>
               ))}
@@ -74,16 +75,15 @@ export default function HostingGratisPage() {
               href={FREE_HOSTING_PLAN.whmcsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-600/30 transition-all cursor-pointer"
+              className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-xs text-black bg-white hover:bg-zinc-200 shadow-lg shadow-white/10 transition-all cursor-pointer"
             >
               <span>ACTIVAR HOSTING GRATIS</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
       </section>
 
-      {/* FAQs */}
       <FaqAccordion faqs={FREE_FAQS} title="Preguntas Frecuentes sobre Hosting Gratis" />
     </div>
   );

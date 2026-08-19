@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Server, Check, ArrowRight, ShieldCheck, Sparkles, Zap, Users, Globe } from "lucide-react";
+import { Server, Check, ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { RESELLER_PLANS } from "@/data/pricing";
 import FaqAccordion from "@/components/home/FaqAccordion";
 import { FAQItem } from "@/data/faqs";
@@ -27,36 +27,36 @@ const RESELLER_FAQS: FAQItem[] = [
 
 export default function HostingResellerPage() {
   return (
-    <div className="pt-28 pb-20 bg-tech-grid">
-      {/* Hero */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
+    <div className="pt-28 pb-20 vercel-grid">
+      <section className="py-16 md:py-24 relative overflow-hidden vercel-spotlight-purple">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/30 text-xs font-bold text-purple-300">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl text-xs font-mono text-purple-300">
                 <Server className="w-3.5 h-3.5 text-purple-400" />
                 <span>Panel WHM + 100% Marca Blanca</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-                Inicia tu Propio Negocio de <span className="text-gradient-blue">Hosting Reseller</span>
+              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight text-shine">
+                Inicia tu Propio Negocio de <br />
+                <span className="text-gradient-electric">Hosting Reseller</span>
               </h1>
 
-              <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                 Crea tus propios paquetes de hosting, asigna recursos a tus clientes y administra todo desde un potente panel WHM con servidores LiteSpeed y discos NVMe de ultra velocidad.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
                 <a
                   href="#planes-reseller"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-xl shadow-purple-600/30 transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-black bg-white hover:bg-zinc-200 shadow-[0_0_30px_-5px_rgba(255,255,255,0.4)] transition-all transform hover:scale-[1.02]"
                 >
-                  <Server className="w-5 h-5" />
+                  <Server className="w-4 h-4" />
                   <span>Ver Planes Reseller</span>
                 </a>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 pt-6 border-t border-slate-800 text-xs sm:text-sm text-slate-300">
+              <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/[0.08] text-xs font-mono text-zinc-400">
                 <div>✓ Nameservers Privados</div>
                 <div>✓ Cuentas cPanel Ilimitadas</div>
                 <div>✓ Migración Gratuita</div>
@@ -64,7 +64,7 @@ export default function HostingResellerPage() {
             </div>
 
             <div className="lg:col-span-5 relative">
-              <div className="p-6 rounded-3xl glass-card border border-purple-500/30 shadow-2xl relative">
+              <div className="p-6 rounded-3xl glass-panel-interactive border border-purple-500/20 shadow-2xl relative">
                 <div className="relative w-full h-64 sm:h-72">
                   <Image
                     src="/assets/vps.png"
@@ -83,12 +83,12 @@ export default function HostingResellerPage() {
       {/* Pricing Cards */}
       <section id="planes-reseller" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
-              Planes Reseller WHM con Recursos Garantizados
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white text-shine">
+              Planes Reseller WHM
             </h2>
-            <p className="text-slate-400">
-              Elige el plan que se adapte al tamaño de tu cartera de clientes y escala en cualquier momento.
+            <p className="text-zinc-400 text-xs sm:text-sm">
+              Escala la infraestructura a medida que crecen tus clientes.
             </p>
           </div>
 
@@ -96,40 +96,40 @@ export default function HostingResellerPage() {
             {RESELLER_PLANS.map((plan) => (
               <div
                 key={plan.id}
-                className={`relative rounded-3xl p-8 flex flex-col justify-between glass-card border transition-all ${
+                className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all ${
                   plan.popular
-                    ? "border-2 border-purple-500 shadow-2xl shadow-purple-950/80"
-                    : "border-slate-800 hover:border-slate-700"
+                    ? "bg-zinc-950/90 border-2 border-purple-500/80 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
+                    : "glass-panel-interactive"
                 }`}
               >
                 {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1 px-4 py-1 rounded-full text-xs font-extrabold uppercase bg-purple-600 text-white shadow-lg">
-                      <Sparkles className="w-3.5 h-3.5" />
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="inline-flex items-center gap-1 px-3.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-purple-600 text-white shadow-lg">
+                      <Sparkles className="w-3 h-3" />
                       {plan.badge}
                     </span>
                   </div>
                 )}
 
                 <div>
-                  <div className="border-b border-slate-800 pb-6 mb-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                    <p className="text-xs sm:text-sm text-slate-400 min-h-[38px]">
+                  <div className="border-b border-white/[0.08] pb-6 mb-6">
+                    <h3 className="text-xl font-bold text-white mb-1.5">{plan.name}</h3>
+                    <p className="text-xs text-zinc-400 min-h-[34px]">
                       {plan.description}
                     </p>
 
-                    <div className="mt-4 flex items-baseline gap-2">
-                      <span className="text-4xl sm:text-5xl font-extrabold text-white">
+                    <div className="mt-4 flex items-baseline gap-1.5 font-mono">
+                      <span className="text-4xl font-extrabold text-white">
                         ${plan.annualPriceMonthly.toFixed(2)}
                       </span>
-                      <span className="text-slate-400 text-sm font-medium">/mes (anual)</span>
+                      <span className="text-zinc-500 text-xs">/mes (anual)</span>
                     </div>
                   </div>
 
-                  <ul className="space-y-3 mb-8 text-xs sm:text-sm text-slate-300">
+                  <ul className="space-y-2.5 mb-8 text-xs text-zinc-300">
                     {plan.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                        <Check className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -140,10 +140,10 @@ export default function HostingResellerPage() {
                   href={plan.whmcsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-sm text-white bg-purple-600 hover:bg-purple-500 shadow-lg shadow-purple-600/30 transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-xs text-white bg-purple-600 hover:bg-purple-500 shadow-lg shadow-purple-600/30 transition-all"
                 >
                   <span>CONTRATAR PLAN RESELLER</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
             ))}

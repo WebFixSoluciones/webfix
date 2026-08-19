@@ -4,84 +4,117 @@
 
 @layer base {
   :root {
-    --background: 8 12 20;
-    --foreground: 248 250 252;
+    --background: 0 0 0;
+    --foreground: 250 250 250;
+  }
+
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   body {
-    background-color: #080c14;
-    color: #f8fafc;
+    background-color: #000000;
+    color: #ededed;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     overflow-x: hidden;
+    letter-spacing: -0.01em;
   }
 }
 
-/* Custom scrollbar */
+/* Vercel Glassmorphism & Surface Tokens */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-interactive {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.glass-panel-interactive:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 30px -10px rgba(0, 102, 255, 0.15);
+}
+
+/* Top Shine / Inner Highlight on Glass */
+.glass-panel-interactive::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  pointer-events: none;
+}
+
+/* Vercel Spotlight & Beams */
+.vercel-spotlight {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.18) 0%, rgba(0, 229, 255, 0.08) 25%, transparent 60%);
+}
+
+.vercel-spotlight-cyan {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.12) 0%, transparent 60%);
+}
+
+.vercel-spotlight-purple {
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+}
+
+/* Grid Background with Fade Mask */
+.vercel-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+.vercel-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Text Gradients */
+.text-shine {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.65) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-electric {
+  background: linear-gradient(135deg, #0070f3 0%, #00dfd8 50%, #7928ca 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 0%, #00dfd8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080c14;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #27272a;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0066ff;
-}
-
-/* Glow effects */
-.glow-blue {
-  box-shadow: 0 0 50px -10px rgba(0, 102, 255, 0.3);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 50px -10px rgba(0, 229, 255, 0.25);
-}
-
-.glow-subtle {
-  box-shadow: 0 0 30px -5px rgba(0, 102, 255, 0.15);
-}
-
-/* Background Gradients */
-.bg-tech-grid {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.bg-radial-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
-}
-
-.glass-card {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 102, 255, 0.4);
-  box-shadow: 0 20px 40px -15px rgba(0, 102, 255, 0.2);
-}
-
-/* Gradient text helper */
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-blue {
-  background: linear-gradient(135deg, #60a5fa 0%, #0066ff 50%, #00e5ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: #3f3f46;
 }
