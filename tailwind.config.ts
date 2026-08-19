@@ -9,16 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#000000",
+        background: "#070B18",
         foreground: "#ededed",
+        brand: {
+          blue: "#1C40F2",
+          "blue-hover": "#1534c9",
+          green: "#00E4B8",
+          "green-hover": "#00c9a2",
+          dark: "#070B18",
+          purple: {
+            950: "#0F0721",
+            900: "#170A31",
+            850: "#1D0C3C",
+            800: "#240E48",
+            700: "#36146D",
+            600: "#4D1D9A",
+            border: "rgba(147, 51, 234, 0.22)",
+            "border-hover": "rgba(0, 228, 184, 0.4)",
+          }
+        }
       },
       fontFamily: {
         heading: ['"Atkinson Hyperlegible Next"', "system-ui", "sans-serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "monospace"],
-      },
-      fontSize: {
-        "2xs": ["0.625rem", { lineHeight: "1rem" }],
       },
       fontWeight: {
         light: "300",
@@ -27,21 +41,13 @@ const config: Config = {
         semibold: "600",
       },
       letterSpacing: {
-        tighter: "-0.03em",
         tight: "-0.02em",
         normal: "-0.01em",
       },
-      lineHeight: {
-        snug: "1.2",
-        relaxed: "1.65",
-      },
       borderRadius: {
+        "3xl": "1.5rem",
         "4xl": "2rem",
-        "5xl": "2.5rem",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      },
+      }
     },
   },
   plugins: [],

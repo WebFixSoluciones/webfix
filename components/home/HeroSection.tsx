@@ -1,152 +1,189 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { Search, ShieldCheck, ArrowRight, Loader2, Star } from "lucide-react";
-import { DOMAIN_TLDS } from "@/data/domains";
+import {
+  Check,
+  Zap,
+  Server,
+  Mail,
+  Layout,
+  ArrowRight,
+  ShieldCheck,
+  Headphones,
+  Users
+} from "lucide-react";
+
+const SOLUTIONS = [
+  {
+    id: "hosting-wordpress",
+    icon: <Zap className="w-5 h-5 text-white" />,
+    title: "Hosting WordPress",
+    description: "Hosting WordPress Administrado rápido, seguro y optimizado.",
+    oldPrice: "$4.50/mes",
+    discount: "AHORRAS 30%",
+    price: "3.75$",
+    period: "/mes",
+    features: [
+      "Dominios .com Gratis",
+      "Instalación con 1 clic",
+      "Actualizaciones automáticas."
+    ],
+    buttonText: "Ver Planes",
+    link: "/hosting-wordpress",
+    whmcsUrl: "https://webfixsoluciones.net/cliente/cart.php?a=add&pid=1"
+  },
+  {
+    id: "hosting-reseller",
+    icon: <Server className="w-5 h-5 text-white" />,
+    title: "Hosting Reseller",
+    description: "Convierte tu negocio en proveedor de hosting cPanel",
+    oldPrice: "$41/mes",
+    discount: "AHORRAS 50%",
+    price: "20.50$",
+    period: "/mes",
+    features: [
+      "Dominios .com Gratis",
+      "Panel WHM",
+      "Cuentas de CPanel Ilimitadas"
+    ],
+    buttonText: "Ver Planes",
+    link: "/hosting-reseller",
+    whmcsUrl: "https://webfixsoluciones.net/cliente/cart.php?a=add&pid=reseller-starter"
+  },
+  {
+    id: "correo-empresarial",
+    icon: <Mail className="w-5 h-5 text-white" />,
+    title: "Correo Empresarial",
+    description: "Correos profesionales para tu marca. ¡Refuerza tu imagen!",
+    oldPrice: "$43.75/mes",
+    discount: "AHORRAS 25%",
+    price: "35.00$",
+    period: "/año",
+    features: [
+      "Dominios .com Gratis",
+      "Cuentas de Correo Ilimitadas",
+      "Seguridad Anti Spam"
+    ],
+    buttonText: "Ver Planes",
+    link: "/correos-empresarial",
+    whmcsUrl: "https://webfixsoluciones.net/cliente/cart.php?a=add&pid=email-starter"
+  },
+  {
+    id: "diseno-web",
+    icon: <Layout className="w-5 h-5 text-white" />,
+    title: "Diseño Web",
+    description: "Crea tu sitio web en minutos. ¡Haz crecer tu negocio!",
+    oldPrice: "$70/mes",
+    discount: "AHORRAS 40%",
+    price: "10.95$",
+    period: "/mes",
+    features: [
+      "Dominios .com Gratis",
+      "Hosting Gratis",
+      "Diseño Personalizado"
+    ],
+    buttonText: "Ver Planes",
+    link: "/diseno-de-paginas-web",
+    whmcsUrl: "https://webfixsoluciones.net/cliente/contact.php"
+  }
+];
 
 export default function HeroSection() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchTerm.trim()) return;
-    setIsSearching(true);
-
-    let cleanDomain = searchTerm.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, "");
-    if (!cleanDomain.includes(".")) cleanDomain = `${cleanDomain}.com`;
-
-    const url = `https://webfixsoluciones.net/cliente/cart.php?a=add&domain=register&query=${encodeURIComponent(cleanDomain)}`;
-    setTimeout(() => {
-      window.open(url, "_blank");
-      setIsSearching(false);
-    }, 400);
-  };
-
-  const tlds = DOMAIN_TLDS.slice(0, 5);
-
   return (
-    <section className="relative min-h-screen flex flex-col">
-      {/* ── Full-screen background ──────────────────────────────────── */}
-      <div className="absolute inset-0 -z-10">
-        {/* Photo */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/assets/hero-hosting.png')" }}
-        />
-        {/* Cinematic darkening overlay – keeps left side very dark so text pops */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
-        {/* Bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/50" />
-      </div>
+    <section className="pt-28 pb-20 sm:pt-36 sm:pb-28 bg-[#070B18] text-white relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-[#240E48]/60 via-[#1D0C3C]/30 to-transparent blur-[160px] pointer-events-none -z-10" />
 
-      {/* ── Content ─────────────────────────────────────────────────── */}
-      <div className="flex-1 flex items-center max-w-7xl mx-auto w-full px-6 lg:px-8 pt-32 pb-24">
-        <div className="max-w-xl space-y-8">
-
-          {/* Eyebrow tag */}
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-normal tracking-widest uppercase text-white/60 border border-white/[0.15] bg-white/[0.04]">
-            Hosting web y mucho más
-          </span>
-
-          {/* Main Heading — Atkinson, weight 600 */}
-          <h1 className="font-heading font-semibold text-white leading-[1.08]" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
-            Construye, aloja,<br />
-            crece tu presencia<br />
-            <span className="text-gradient-blue">online</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Main Title from Screenshot */}
+        <div className="text-center max-w-4xl mx-auto space-y-6">
+          <h1 className="font-heading font-semibold text-3xl sm:text-5xl lg:text-[3.25rem] text-[#00E4B8] tracking-tight leading-tight">
+            Todas las soluciones que necesitas para tu <br className="hidden sm:inline" />
+            éxito en línea
           </h1>
 
-          {/* Sub — Inter 400 */}
-          <p className="text-white/60 font-normal text-base sm:text-lg leading-relaxed max-w-md">
-            Tu plataforma todo-en-uno para el éxito online.<br />
-            LiteSpeed NVMe, SSL gratis, migración incluida.
-          </p>
-
-          {/* Domain Search Bar */}
-          <form onSubmit={handleSearch} className="w-full max-w-lg">
-            <div className="flex items-center bg-white/[0.06] border border-white/[0.12] rounded-full p-1.5 backdrop-blur-sm transition-all focus-within:border-white/30">
-              <div className="flex items-center gap-2 pl-4 flex-1">
-                <Search className="w-4 h-4 text-white/40 shrink-0" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Busca tu dominio ideal..."
-                  className="w-full bg-transparent text-white text-sm font-normal placeholder-white/30 focus:outline-none"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSearching}
-                className="shrink-0 px-6 py-2.5 rounded-full text-sm font-normal text-black bg-white hover:bg-white/90 transition-colors cursor-pointer disabled:opacity-60"
-              >
-                {isSearching ? (
-                  <Loader2 className="w-4 h-4 animate-spin mx-auto" />
-                ) : (
-                  "Buscar"
-                )}
-              </button>
+          {/* 3 Trust Badges from Screenshot */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-[13px] font-normal text-white/80">
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1D0C3C]/80 border border-purple-900/40">
+              <Check className="w-4 h-4 text-[#00E4B8] shrink-0" />
+              <span>Más de 1 000 clientes confían en nosotros</span>
             </div>
 
-            {/* TLD quick pills */}
-            <div className="flex flex-wrap gap-2 mt-3 pl-1">
-              {tlds.map((tld) => (
-                <button
-                  key={tld.extension}
-                  type="button"
-                  onClick={() => {
-                    setSearchTerm((prev) => {
-                      const base = prev.split(".")[0] || prev;
-                      return base ? `${base}${tld.extension}` : "";
-                    });
-                  }}
-                  className="text-[11px] font-normal text-white/50 hover:text-white/80 transition-colors cursor-pointer"
-                >
-                  {tld.extension}{" "}
-                  <span className="text-white/25">${tld.priceAnnual.toFixed(0)}</span>
-                </button>
-              ))}
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1D0C3C]/80 border border-purple-900/40">
+              <Check className="w-4 h-4 text-[#00E4B8] shrink-0" />
+              <span>Dominio gratis incluido en su hosting</span>
             </div>
-          </form>
 
-          {/* CTA Button */}
-          <div className="pt-2">
-            <a
-              href="#planes"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-normal text-black bg-white hover:bg-white/90 transition-colors shadow-md"
-            >
-              Explorar servicios
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-
-          {/* Trust badge */}
-          <div className="flex items-start gap-3 pt-2">
-            <ShieldCheck className="w-5 h-5 text-white/30 shrink-0 mt-0.5" />
-            <p className="text-white/40 text-[13px] font-light leading-snug">
-              Garantía de reembolso de 30 días.{" "}
-              <span className="text-white/60">Sin contratos forzosos.</span>
-            </p>
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1D0C3C]/80 border border-purple-900/40">
+              <Check className="w-4 h-4 text-[#00E4B8] shrink-0" />
+              <span>Atención al cliente 24 horas al día</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* ── Bottom Trust Bar ─────────────────────────────────────────── */}
-      <div className="relative bg-black/50 backdrop-blur-md border-t border-white/[0.06] py-5 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
-          <div className="flex items-center gap-1.5">
-            {[1,2,3,4,5].map((i) => (
-              <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-            ))}
-          </div>
-          <p className="text-[13px] font-light text-white/50">
-            <span className="text-white/70 font-normal">Excelente</span>
-            {" "}· Máxima calificación del sector ·{" "}
-            <span className="text-white/70 font-normal">4.9 de 5 estrellas</span>
-            {" "}· Con la confianza de miles de sitios web en Ecuador
-          </p>
+        {/* 4-Column Solutions Cards (Dark Purple + Mint + Royal Blue) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-4">
+          {SOLUTIONS.map((item) => (
+            <div
+              key={item.id}
+              className="card-purple rounded-3xl p-6 sm:p-7 flex flex-col justify-between"
+            >
+              <div>
+                {/* Icon Box */}
+                <div className="w-10 h-10 rounded-2xl bg-white/[0.08] border border-white/[0.1] flex items-center justify-center mb-5">
+                  {item.icon}
+                </div>
+
+                {/* Title */}
+                <h3 className="font-heading font-semibold text-xl text-white mb-2">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-white/60 font-light text-xs leading-relaxed min-h-[36px] mb-5">
+                  {item.description}
+                </p>
+
+                {/* Old Price + Discount Badge */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="line-through text-fuchsia-400 text-xs font-mono">
+                    {item.oldPrice}
+                  </span>
+                  <span className="text-[10px] font-semibold text-[#00E4B8] bg-[#00E4B8]/15 px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
+                    {item.discount}
+                  </span>
+                </div>
+
+                {/* Main Price */}
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-3xl font-extrabold text-[#00E4B8] font-mono tracking-tight">
+                    {item.price}
+                  </span>
+                  <span className="text-white/60 text-xs font-normal font-mono">
+                    {item.period}
+                  </span>
+                </div>
+
+                {/* Features list with Mint Green Checks */}
+                <ul className="space-y-2.5 mb-8 text-xs font-light text-white/80">
+                  {item.features.map((feat, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <Check className="w-3.5 h-3.5 text-[#00E4B8] shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Action Button (Royal Blue #1C40F2) */}
+              <a
+                href={item.link}
+                className="w-full py-3 px-5 rounded-xl font-medium text-xs text-white bg-[#1C40F2] hover:bg-[#1534c9] transition-all text-center block shadow-[0_0_15px_rgba(28,64,242,0.3)] hover:shadow-[0_0_25px_rgba(28,64,242,0.5)] transform hover:scale-[1.02]"
+              >
+                {item.buttonText}
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>
