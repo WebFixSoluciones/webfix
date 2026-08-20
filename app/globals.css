@@ -46,6 +46,22 @@
   ::-webkit-scrollbar-thumb:hover { background: #222738; }
 }
 
+/* ── Infinite Marquee Ticker ───────────────────────────────────────── */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* ── Deep Black & Dark Slate Surface Cards ─────────────────────────── */
 .card-dark-slate {
   background: linear-gradient(180deg, #0D0F16 0%, #080A0F 100%);
