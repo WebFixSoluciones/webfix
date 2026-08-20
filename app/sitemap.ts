@@ -8,14 +8,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     "",
-    "/hosting-wordpress",
-    "/hosting-reseller",
-    "/correos-empresarial",
+    // Dominios
     "/registro-de-dominios",
+    "/whois",
+    "/transferencia-de-dominios",
+    "/subasta-de-dominios",
+    // Hosting
+    "/hosting-wordpress",
     "/hosting-gratis",
-    "/servidor-dedicado",
+    "/hosting-vps",
+    "/hosting-reseller",
+    "/hosting-moodle",
+    "/hosting-cloud",
     "/hosting-en-ecuador",
+    "/servidor-dedicado",
+    // Correos
+    "/correos-empresarial",
+    // Diseño & Soluciones
     "/diseno-de-paginas-web",
+    "/diseno-ecommerce",
+    "/desarrollo-de-software",
+    "/desarrollo-de-apps",
+    "/aulas-virtuales",
+    "/crm-whatsapp",
+    // Legal
     "/terminos-y-condiciones",
     "/politica-de-uso-aceptable",
     "/terminos-y-condiciones/formulario-de-aceptacion",
