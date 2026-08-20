@@ -18,10 +18,10 @@ import {
   Zap,
   Sparkles,
   ArrowRight,
-  Headphones,
   Cpu,
   RefreshCw,
-  HelpCircle
+  HelpCircle,
+  ShoppingCart
 } from "lucide-react";
 
 type ActiveMenu = "hosting" | "dominios" | "recursos" | null;
@@ -64,12 +64,13 @@ export default function Navbar() {
       }`}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 90% Width Container */}
+      <div className="w-[90%] max-w-[1700px] mx-auto">
         <div className="flex items-center justify-between h-11">
-          {/* Logo */}
-          <div className="flex items-center gap-8">
+          {/* Logo & Links */}
+          <div className="flex items-center gap-10">
             <Link href="/" className="shrink-0 flex items-center">
-              <div className="relative w-32 sm:w-36 h-8">
+              <div className="relative w-36 sm:w-40 h-8">
                 <Image
                   src="/assets/logo-white.svg"
                   alt="WebFix"
@@ -81,7 +82,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-6 text-sm font-normal text-white/80">
+            <nav className="hidden lg:flex items-center gap-7 text-sm font-normal text-white/80">
               <Link
                 href="/"
                 className={`transition-colors ${pathname === "/" ? "text-white font-medium" : "hover:text-white"}`}
@@ -153,11 +154,32 @@ export default function Navbar() {
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === "recursos" ? "rotate-180 text-[#00E4B8]" : "opacity-60"}`} />
                 </button>
               </div>
+
+              <a
+                href="/#planes"
+                className="hover:text-white transition-colors"
+              >
+                Precios
+              </a>
             </nav>
           </div>
 
           {/* Right Action Icons & Button */}
-          <div className="hidden lg:flex items-center gap-4 text-xs font-normal">
+          <div className="hidden lg:flex items-center gap-5 text-xs font-normal">
+            <span className="flex items-center gap-1.5 text-white/50 font-light">
+              <span>🇪🇨</span>
+              <span>Ecuador</span>
+            </span>
+
+            <a
+              href="https://webfixsoluciones.net/cliente/cart.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/70 hover:text-white transition-colors"
+            >
+              Tienda WHMCS
+            </a>
+
             <a
               href="https://webfixsoluciones.net/cliente/contact.php"
               target="_blank"
@@ -172,7 +194,7 @@ export default function Navbar() {
               href="https://webfixsoluciones.net/cliente/clientarea.php"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-xl font-medium text-xs text-white bg-[#1C40F2] hover:bg-[#1534c9] transition-all shadow-[0_0_20px_rgba(28,64,242,0.4)] transform hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs text-white bg-[#1C40F2] hover:bg-[#1534c9] transition-all shadow-[0_0_20px_rgba(28,64,242,0.4)] transform hover:scale-[1.02]"
             >
               <User className="w-3.5 h-3.5" />
               <span>Ingresar</span>
@@ -200,7 +222,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── Mega Menu Flyout Panels (Dark Purple & Mint) ────────────────── */}
+      {/* ── Mega Menu Flyout Panels (90% Width Layout) ───────────────── */}
       {activeMenu && (
         <div
           className="hidden lg:block absolute top-full inset-x-0 bg-[#070B18]/98 backdrop-blur-3xl border-b border-white/[0.08] shadow-[0_35px_80px_-20px_rgba(0,0,0,0.95)] animate-in fade-in slide-in-from-top-2 duration-150"
@@ -209,7 +231,7 @@ export default function Navbar() {
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+          <div className="w-[90%] max-w-[1700px] mx-auto py-8">
             {/* HOSTING MEGA MENU */}
             {activeMenu === "hosting" && (
               <div className="grid grid-cols-12 gap-8">
@@ -220,7 +242,7 @@ export default function Navbar() {
                   <div className="space-y-1.5">
                     <Link
                       href="/hosting-wordpress"
-                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Zap className="w-4 h-4" />
@@ -240,7 +262,7 @@ export default function Navbar() {
 
                     <Link
                       href="/hosting-en-ecuador"
-                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Globe className="w-4 h-4" />
@@ -257,7 +279,7 @@ export default function Navbar() {
 
                     <Link
                       href="/hosting-gratis"
-                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Sparkles className="w-4 h-4" />
@@ -267,7 +289,7 @@ export default function Navbar() {
                           Hosting Gratis (Free Tier)
                         </div>
                         <div className="text-[12px] font-light text-white/50 leading-relaxed mt-0.5">
-                          Inicia tu primer sitio web sin costo mensual.
+                          Inicia tu primer proyecto sin costo mensual.
                         </div>
                       </div>
                     </Link>
@@ -281,7 +303,7 @@ export default function Navbar() {
                   <div className="space-y-1.5">
                     <Link
                       href="/hosting-reseller"
-                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Server className="w-4 h-4" />
@@ -298,7 +320,7 @@ export default function Navbar() {
 
                     <Link
                       href="/servidor-dedicado"
-                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Cpu className="w-4 h-4" />
@@ -316,7 +338,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="col-span-4">
-                  <div className="h-full p-6 rounded-3xl bg-gradient-to-br from-[#240E48] to-[#15082C] border border-purple-800/40 flex flex-col justify-between">
+                  <div className="h-full p-6 rounded-3xl bg-gradient-to-br from-[#1d0c3c] to-[#0a0d18] border border-purple-800/40 flex flex-col justify-between">
                     <div className="space-y-3">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider bg-[#00E4B8]/15 text-[#00E4B8] border border-[#00E4B8]/30">
                         <Sparkles className="w-3 h-3 text-[#00E4B8]" />
@@ -353,7 +375,7 @@ export default function Navbar() {
                   <div className="space-y-1.5">
                     <Link
                       href="/registro-de-dominios"
-                      className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Globe className="w-4 h-4" />
@@ -372,7 +394,7 @@ export default function Navbar() {
                       href="https://webfixsoluciones.net/cliente/cart.php?a=add&domain=transfer"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#1D0C3C]/60 hover:bg-[#240E48] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
+                      className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#140c24] hover:bg-[#1a0f30] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0 mt-0.5">
                         <RefreshCw className="w-4 h-4" />
@@ -390,7 +412,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="col-span-6">
-                  <div className="h-full p-6 rounded-3xl bg-[#1D0C3C] border border-purple-900/30 flex flex-col justify-between">
+                  <div className="h-full p-6 rounded-3xl bg-[#140c24] border border-purple-900/30 flex flex-col justify-between">
                     <div>
                       <span className="text-xs font-mono text-[#00E4B8] uppercase tracking-wider block mb-2">
                         Precios de Dominios Populares
@@ -432,14 +454,14 @@ export default function Navbar() {
                   <div className="space-y-1.5">
                     <Link
                       href="/terminos-y-condiciones"
-                      className="flex items-center gap-3 p-3 rounded-xl bg-[#1D0C3C]/60 hover:bg-[#240E48] text-xs font-normal text-white/80 hover:text-white transition-colors border border-purple-900/30"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[#140c24] hover:bg-[#1a0f30] text-xs font-normal text-white/80 hover:text-white transition-colors border border-purple-900/30"
                     >
                       <FileText className="w-4 h-4 text-white/40" />
                       <span>Términos y Condiciones Generales (8 Capítulos)</span>
                     </Link>
                     <Link
                       href="/politica-de-uso-aceptable"
-                      className="flex items-center gap-3 p-3 rounded-xl bg-[#1D0C3C]/60 hover:bg-[#240E48] text-xs font-normal text-white/80 hover:text-white transition-colors border border-purple-900/30"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[#140c24] hover:bg-[#1a0f30] text-xs font-normal text-white/80 hover:text-white transition-colors border border-purple-900/30"
                     >
                       <ShieldCheck className="w-4 h-4 text-white/40" />
                       <span>Política de Uso Aceptable (PUA)</span>
@@ -455,7 +477,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="col-span-6">
-                  <div className="h-full p-6 rounded-3xl bg-[#1D0C3C] border border-purple-900/30 flex flex-col justify-between">
+                  <div className="h-full p-6 rounded-3xl bg-[#140c24] border border-purple-900/30 flex flex-col justify-between">
                     <div className="space-y-2">
                       <h4 className="font-heading font-semibold text-white text-base">
                         Portal de Clientes WHMCS

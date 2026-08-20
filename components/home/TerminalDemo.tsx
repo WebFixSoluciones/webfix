@@ -2,77 +2,81 @@ import { Cpu, HardDrive, Shield, Terminal } from "lucide-react";
 
 export default function TerminalDemo() {
   return (
-    <section className="py-28 bg-zinc-950 border-y border-white/[0.04]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+    <section className="py-24 bg-[#070B18] border-t border-white/[0.04]">
+      <div className="w-[90%] max-w-[1700px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* Left */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <p className="text-[11px] uppercase tracking-widest font-normal text-white/40 mb-4">
-                Infraestructura
+              <p className="text-[11px] uppercase tracking-widest font-mono text-[#00E4B8] mb-3">
+                Infraestructura Developer-First
               </p>
-              <h2 className="font-heading font-semibold text-white leading-snug" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}>
-                Control total de tu servidor
+              <h2 className="font-heading font-semibold text-3xl sm:text-5xl text-white leading-tight">
+                Control Total de tu Servidor
               </h2>
-              <p className="text-white/50 font-light text-base leading-relaxed mt-4 max-w-sm">
-                LiteSpeed Enterprise con acceso SSH, WP-CLI, Git y bases de datos MariaDB ultra-optimizadas.
+              <p className="text-white/60 font-light text-sm sm:text-base leading-relaxed mt-4">
+                LiteSpeed Enterprise con acceso SSH, WP-CLI, control de versiones Git y bases de datos MariaDB ultra-optimizadas.
               </p>
             </div>
 
             <div className="space-y-4">
               {[
-                { icon: <Cpu className="w-4 h-4 text-blue-400" />, title: "45 ms TTFB", sub: "Respuestas en caché servidas desde RAM." },
-                { icon: <HardDrive className="w-4 h-4 text-emerald-400" />, title: "NVMe PCIe 4.0 RAID 10", sub: "Hasta 7,000 MB/s lectura y escritura." },
-                { icon: <Shield className="w-4 h-4 text-purple-400" />, title: "Imunify360 AI", sub: "Firewall WAF proactivo en tiempo real." },
+                { icon: <Cpu className="w-5 h-5 text-[#00E4B8]" />, title: "45 ms TTFB", sub: "Respuestas cacheadas en memoria RAM servidas al instante." },
+                { icon: <HardDrive className="w-5 h-5 text-blue-400" />, title: "NVMe PCIe 4.0 en RAID 10", sub: "Hasta 7,000 MB/s de velocidad de lectura y escritura." },
+                { icon: <Shield className="w-5 h-5 text-purple-400" />, title: "Imunify360 AI Engine", sub: "Firewall WAF proactivo y mitigación en tiempo real." },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.05]">
+                <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-[#140c24]/60 border border-purple-900/30 hover:border-purple-800/60 transition-colors">
                   <div className="shrink-0 mt-0.5">{item.icon}</div>
                   <div>
-                    <p className="text-sm font-normal text-white">{item.title}</p>
-                    <p className="text-[13px] font-light text-white/40 mt-0.5">{item.sub}</p>
+                    <p className="text-sm font-semibold text-white">{item.title}</p>
+                    <p className="text-xs font-light text-white/50 mt-1 leading-relaxed">{item.sub}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Terminal */}
+          {/* Right: Terminal Console */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-[#0d0d0d] border border-white/[0.06] shadow-2xl overflow-hidden font-mono text-[13px]">
+            <div className="rounded-3xl bg-[#0b0e1b] border border-white/[0.08] shadow-2xl overflow-hidden font-mono text-xs sm:text-[13px]">
               {/* Title bar */}
-              <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.05] bg-white/[0.02]">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/50" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
-                <span className="ml-3 text-white/30 text-[11px]">webfix-node-01 — bash</span>
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-white/[0.02]">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-3 h-3 rounded-full bg-red-500/60" />
+                  <span className="w-3 h-3 rounded-full bg-amber-500/60" />
+                  <span className="w-3 h-3 rounded-full bg-emerald-500/60" />
+                  <span className="ml-3 text-white/40 text-xs">webfix-cloud-node-01:~</span>
+                </div>
+                <span className="text-[11px] text-[#00E4B8] bg-[#00E4B8]/10 px-2 py-0.5 rounded">HTTP/3 ACTIVE</span>
               </div>
 
               {/* Output */}
-              <div className="p-6 space-y-4 min-h-[260px] leading-relaxed">
+              <div className="p-8 space-y-4 min-h-[300px] leading-relaxed">
                 <div>
-                  <span className="text-emerald-400/70">$ </span>
-                  <span className="text-white/80">litespeed-bench --concurrency 200</span>
+                  <span className="text-[#00E4B8]">$ </span>
+                  <span className="text-white">litespeed-bench --concurrency 200 --http3</span>
                 </div>
-                <div className="pl-4 space-y-1 text-white/40">
-                  <p>TTFB: <span className="text-emerald-400">38 ms</span></p>
-                  <p>Throughput: <span className="text-emerald-400">4,820 req/s</span></p>
-                  <p>Brotli compression: <span className="text-white/60">−78% weight</span></p>
-                  <p>LSCache hit rate: <span className="text-emerald-400">99.8%</span></p>
-                  <p>Core Web Vitals: <span className="text-emerald-400">A+ · 100/100</span></p>
+                <div className="pl-4 space-y-1.5 text-white/50 text-xs">
+                  <p>⚡ Inicializando benchmark en servidor LiteSpeed Enterprise...</p>
+                  <p>TTFB (Time to First Byte): <span className="text-[#00E4B8] font-bold">38 ms</span></p>
+                  <p>Throughput concurrente: <span className="text-[#00E4B8] font-bold">4,820 req/s</span></p>
+                  <p>Compresión Brotli: <span className="text-white font-medium">−78% reducción de peso</span></p>
+                  <p>LSCache hit rate en RAM: <span className="text-[#00E4B8] font-bold">99.8%</span></p>
+                  <p>Core Web Vitals: <span className="text-[#00E4B8] font-bold">GRADE A+ (100/100)</span></p>
                 </div>
-                <div className="pt-2">
-                  <span className="text-emerald-400/70">$ </span>
-                  <span className="text-white/80">imunify360 status</span>
+                <div className="pt-3">
+                  <span className="text-[#00E4B8]">$ </span>
+                  <span className="text-white">imunify360-agent status</span>
                 </div>
-                <div className="pl-4 space-y-1 text-white/40">
-                  <p>WAF: <span className="text-emerald-400">Active</span></p>
-                  <p>Threats blocked today: <span className="text-white/60">2,419</span></p>
-                  <p>Malware scan: <span className="text-emerald-400">0 threats found</span></p>
+                <div className="pl-4 space-y-1 text-white/50 text-xs">
+                  <p>WAF Proactivo: <span className="text-[#00E4B8] font-bold">ACTIVO</span></p>
+                  <p>Ataques mitigados hoy: <span className="text-white font-medium">2,419 bots bloqueados</span></p>
+                  <p>Escaneo de Malware: <span className="text-[#00E4B8] font-bold">0 amenazas encontradas</span></p>
                 </div>
-                <div className="flex items-center gap-1.5 pt-2 text-white/30">
-                  <span className="text-emerald-400/70">$ </span>
-                  <span className="inline-block w-1.5 h-4 bg-white/40 animate-pulse" />
+                <div className="flex items-center gap-1.5 pt-3 text-white/40">
+                  <span className="text-[#00E4B8]">root@webfix:~$ </span>
+                  <span className="inline-block w-2 h-4 bg-[#00E4B8] animate-pulse" />
                 </div>
               </div>
             </div>

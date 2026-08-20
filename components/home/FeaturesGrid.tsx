@@ -21,36 +21,36 @@ const features = [
 
 export default function FeaturesGrid() {
   return (
-    <section className="py-24 bg-[#070B18] border-t border-white/[0.06]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+    <section className="py-24 bg-[#070B18] border-t border-white/[0.04]">
+      <div className="w-[90%] max-w-[1700px] mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <p className="text-[11px] uppercase tracking-widest font-mono text-[#00E4B8]">
             Ventajas Exclusivas WebFix
           </p>
-          <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-white">
+          <h2 className="font-heading font-semibold text-3xl sm:text-5xl text-white">
             Infraestructura Diseñada para el Éxito
           </h2>
-          <p className="text-white/60 font-light text-sm max-w-md mx-auto leading-relaxed">
+          <p className="text-white/60 font-light text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
             Componentes de hardware y software de nivel corporativo para asegurar la máxima estabilidad de tu proyecto.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {features.map((f, i) => (
             <div
               key={i}
-              className={`card-purple rounded-3xl p-7 flex flex-col justify-between space-y-4 ${
+              className={`rounded-3xl p-8 flex flex-col justify-between space-y-4 bg-gradient-to-b from-[#180d2d] via-[#120822] to-[#0b0e1b] border border-purple-900/30 hover:border-[#00E4B8]/40 transition-all duration-300 ${
                 f.wide ? "md:col-span-2" : ""
               }`}
             >
-              <div className="w-10 h-10 rounded-2xl bg-black/40 border border-white/[0.08] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-black/40 border border-white/[0.08] flex items-center justify-center">
                 {f.icon}
               </div>
               <div>
-                <h3 className="font-heading font-semibold text-white text-lg mb-2">
+                <h3 className="font-heading font-semibold text-white text-xl mb-2">
                   {f.title}
                 </h3>
-                <p className="text-white/60 font-light text-xs leading-relaxed">
+                <p className="text-white/60 font-light text-xs sm:text-sm leading-relaxed">
                   {f.desc}
                 </p>
               </div>
