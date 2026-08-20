@@ -9,23 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#070B18",
+        background: "#05070B",
         foreground: "#ededed",
         brand: {
           blue: "#1C40F2",
           "blue-hover": "#1534c9",
           green: "#00E4B8",
           "green-hover": "#00c9a2",
-          dark: "#070B18",
-          purple: {
-            950: "#0F0721",
-            900: "#170A31",
-            850: "#1D0C3C",
-            800: "#240E48",
-            700: "#36146D",
-            600: "#4D1D9A",
-            border: "rgba(147, 51, 234, 0.22)",
-            "border-hover": "rgba(0, 228, 184, 0.4)",
+          dark: "#05070B",
+          slate: {
+            950: "#05070B",
+            900: "#090B10",
+            850: "#0D0F16",
+            800: "#12151E",
+            700: "#181C28",
+            600: "#222738",
           },
         },
       },
