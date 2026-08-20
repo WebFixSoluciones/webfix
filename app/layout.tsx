@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TawkToChat from "@/components/layout/TawkToChat";
 
-/* ── Fonts ──────────────────────────────────────────────────────────── */
+/* ── 1. Atemica Font (Strictly for Headings & Titles) ──────────────── */
+const atemica = localFont({
+  src: "./fonts/AtemicaSans.otf",
+  variable: "--font-atemica",
+  display: "swap",
+});
+
+/* ── 2. Inter Font (Strictly for Body text, UI, & Paragraphs) ──────── */
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -66,18 +74,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`scroll-smooth ${inter.variable}`}>
+    <html lang="es" className={`scroll-smooth ${atemica.variable} ${inter.variable}`}>
       <head>
-        {/* Atkinson Hyperlegible Next — Atomica-style for headings */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
-          rel="stylesheet"
-        />
         <link rel="icon" href="/assets/logo-white.svg" type="image/svg+xml" />
       </head>
-      <body className="min-h-screen flex flex-col bg-black text-white antialiased">
+      <body className="min-h-screen flex flex-col bg-[#070B18] text-[#ededed] antialiased">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "AtemicaSans";
+  src: url("/fonts/AtemicaSans.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --font-heading: "Atkinson Hyperlegible Next", system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-atemica), "AtemicaSans", sans-serif;
+  --font-body: var(--font-inter), sans-serif;
 }
 
 @layer base {
@@ -19,13 +27,15 @@
     letter-spacing: -0.01em;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* ── Atemica is strictly applied to all Headings ────────────────── */
+  h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-heading);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.15;
   }
 
+  /* ── Inter is strictly applied to all body text & UI elements ─── */
   p, span, li, a, label, input, button, td, th {
     font-family: var(--font-body);
   }
@@ -36,21 +46,21 @@
   ::-webkit-scrollbar-thumb:hover { background: #36146D; }
 }
 
-/* ── Dark Purple Cards from Screenshot ─────────────────────────────── */
+/* ── Dark Purple Cards ─────────────────────────────────────────────── */
 .card-purple {
-  background: linear-gradient(180deg, #1D0C3C 0%, #15082C 100%);
-  border: 1px solid rgba(147, 51, 234, 0.2);
+  background: linear-gradient(180deg, #180d2d 0%, #0b0e1b 100%);
+  border: 1px solid rgba(147, 51, 234, 0.25);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-purple:hover {
-  background: linear-gradient(180deg, #240E48 0%, #1A0A35 100%);
-  border-color: rgba(0, 228, 184, 0.35);
+  background: linear-gradient(180deg, #20113b 0%, #0f1224 100%);
+  border-color: rgba(0, 228, 184, 0.4);
   transform: translateY(-2px);
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px -10px rgba(0, 228, 184, 0.15);
 }
 
-/* ── Mint Green Text Glow ─────────────────────────────────────────── */
+/* ── Mint Green Text & Accents ─────────────────────────────────────── */
 .text-mint {
   color: #00E4B8;
 }

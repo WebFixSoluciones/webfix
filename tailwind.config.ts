@@ -26,12 +26,12 @@ const config: Config = {
             600: "#4D1D9A",
             border: "rgba(147, 51, 234, 0.22)",
             "border-hover": "rgba(0, 228, 184, 0.4)",
-          }
-        }
+          },
+        },
       },
       fontFamily: {
-        heading: ['"Atkinson Hyperlegible Next"', "system-ui", "sans-serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        heading: ["var(--font-atemica)", "AtemicaSans", "sans-serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "monospace"],
       },
       fontWeight: {
@@ -47,7 +47,7 @@ const config: Config = {
       borderRadius: {
         "3xl": "1.5rem",
         "4xl": "2rem",
-      }
+      },
     },
   },
   plugins: [],
